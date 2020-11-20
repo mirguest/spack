@@ -13,12 +13,6 @@ class PyTorchvision(PythonPackage):
     git      = "https://github.com/pytorch/vision.git"
 
     maintainers = ['adamjstewart']
-    import_modules = [
-        'torchvision', 'torchvision.datasets', 'torchvision.models',
-        'torchvision.transforms', 'torchvision.ops',
-        'torchvision.models.segmentation',
-        'torchvision.models.detection'
-    ]
 
     version('master', branch='master')
     version('0.8.1', sha256='c46734c679c99f93e5c06654f4295a05a6afe6c00a35ebd26a2cce507ae1ccbd')
