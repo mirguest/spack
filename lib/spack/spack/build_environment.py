@@ -750,6 +750,9 @@ def setup_package(pkg, dirty, context='build'):
     elif context == 'test':
         import spack.user_environment as uenv  # avoid circular import
         env.extend(uenv.environment_modifications_for_spec(pkg.spec))
+        env.extend(
+            modifications_from_dependencies(pkg.spec, context=context)
+        )
         set_module_variables_for_package(pkg)
         env.prepend_path('PATH', '.')
 
