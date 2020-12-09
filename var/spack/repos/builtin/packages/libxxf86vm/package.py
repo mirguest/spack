@@ -19,7 +19,7 @@ class Libxxf86vm(AutotoolsPackage, XorgPackage):
 
     depends_on('xproto', type='build')
     depends_on('xextproto', type='build')
-    depends_on('xf86vidmodeproto@2.2.99.1:', type='build')
+    depends_on('xf86vidmodeproto@2.2.99.1:')
     depends_on('pkgconfig', type='build')
     depends_on('util-macros', type='build')
 

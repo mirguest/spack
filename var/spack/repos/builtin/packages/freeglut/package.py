@@ -23,18 +23,23 @@ class Freeglut(CMakePackage, SourceforgePackage):
     depends_on('libxrandr')
     depends_on('libxi')
     depends_on('libxxf86vm')
+    depends_on('xf86vidmodeproto')
     depends_on('xrandr')
     depends_on('inputproto')
 
     patch('common-gcc10.patch', when="@3.2.1: %gcc@10.0:")
 
     def cmake_args(self):
+        print(self.spec['gl'].libs)
+        print(self.spec['libxxf86vm'].libs[0])
         return [
             '-DFREEGLUT_BUILD_DEMOS=OFF',
-            '-DOPENGL_gl_LIBRARY=' + self.spec['gl'].libs[0],
+            '-DOPENGL_gl_LIBRARY=' + self.spec['gl'].prefix.lib + "/libGL.so",
             '-DOPENGL_glu_LIBRARY=' + self.spec['glu'].libs[0],
             '-DX11_X11_LIB=' + self.spec['libx11'].libs[0],
             '-DX11_Xrandr_LIB=' + self.spec['libxrandr'].libs[0],
             '-DX11_Xi_LIB=' + self.spec['libxi'].libs[0],
             '-DX11_Xxf86vm_LIB=' + self.spec['libxxf86vm'].libs[0],
         ]
+    def setup_build_environment(self, env):
+        env.prepend_path('CPATH', self.spec['xf86vidmodeproto'].prefix.include)
