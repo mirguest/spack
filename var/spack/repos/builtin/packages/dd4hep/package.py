@@ -58,7 +58,8 @@ class Dd4hep(CMakePackage):
     extends('python')
     depends_on('xerces-c', when='+xercesc')
     depends_on('geant4@10.2.2:', when='+geant4')
-    depends_on('assimp', when='+assimp')
+    # todo: fix assimp cmake
+    #depends_on('assimp@5.0.0:', when='+assimp')
     depends_on('hepmc3', when="+hepmc3")
     depends_on('lcio', when="+lcio")
     depends_on('edm4hep', when="+edm4hep")
